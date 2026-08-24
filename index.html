@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Caroline Ang — project portfolio. AI agents, civic tech, and decision systems. Public repos linked; client work summarized without attribution.">
+<title>Caroline Ang — Project Portfolio</title>
+<style>
+  :root {
+    --ground: #FAFAF7; --ink: #1C2321; --muted: #5C6663; --line: #DDE2DD;
+    --accent: #0E7C6B; --accent-soft: #0E7C6B14; --copper: #A05A24;
+    --pill-private: #A05A2416; --pill-public: #0E7C6B14; --card: #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101615; --ink: #E8ECE9; --muted: #96A19C; --line: #26302D;
+      --accent: #47C2AB; --accent-soft: #47C2AB1A; --copper: #D99A63;
+      --pill-private: #D99A631F; --pill-public: #47C2AB1A; --card: #151D1B;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #101615; --ink: #E8ECE9; --muted: #96A19C; --line: #26302D;
+    --accent: #47C2AB; --accent-soft: #47C2AB1A; --copper: #D99A63;
+    --pill-private: #D99A631F; --pill-public: #47C2AB1A; --card: #151D1B;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ground); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    line-height: 1.6; margin: 0; padding: 0 1.25rem;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 4rem 0 5rem; }
+
+  .eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin: 0 0 1rem;
+  }
+  h1 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 500; line-height: 1.15;
+    margin: 0 0 1rem; text-wrap: balance;
+  }
+  .lede { font-size: 1.08rem; color: var(--muted); max-width: 38rem; margin: 0 0 1.25rem; }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  .stats {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 2rem; padding: 0; list-style: none;
+  }
+  .stats li {
+    font-size: 0.8rem; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 999px; padding: 0.25rem 0.75rem;
+  }
+  .stats b { color: var(--ink); font-weight: 600; }
+
+  .note {
+    border-left: 3px solid var(--copper); background: var(--pill-private);
+    padding: 0.9rem 1.1rem; border-radius: 0 6px 6px 0;
+    font-size: 0.92rem; color: var(--ink); margin: 0 0 3.5rem;
+  }
+  .note em { font-style: normal; font-weight: 600; }
+
+  section { margin: 0 0 3.5rem; }
+  h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 1.35rem; font-weight: 500; margin: 0 0 0.3rem;
+  }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; margin: 0 0 0.9rem;
+    padding-bottom: 0.6rem; border-bottom: 1px solid var(--line);
+  }
+  .section-intro { color: var(--muted); font-size: 0.95rem; margin: 0 0 1.75rem; }
+
+  .proj { margin: 0 0 2rem; padding: 0 0 0 0; }
+  .proj h3 {
+    font-size: 1.02rem; font-weight: 650; margin: 0 0 0.35rem;
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.55rem;
+  }
+  .badge {
+    font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
+    font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 4px;
+  }
+  .b-open { background: var(--pill-public); color: var(--accent); }
+  .b-anon { background: var(--pill-private); color: var(--copper); }
+  .b-live { background: var(--accent); color: var(--ground); }
+  .proj p { margin: 0 0 0.55rem; font-size: 0.95rem; }
+  .meta { font-size: 0.85rem; color: var(--muted); margin: 0 0 0.5rem; }
+  .meta b { color: var(--ink); font-weight: 600; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.5rem; }
+  .tag {
+    font-size: 0.72rem; color: var(--muted); background: var(--accent-soft);
+    border-radius: 4px; padding: 0.15rem 0.5rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  a:hover { border-bottom-color: var(--accent); }
+  .link { font-size: 0.85rem; }
+
+  .tablewrap { overflow-x: auto; margin: 0 0 1.25rem; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.86rem; min-width: 34rem; }
+  th, td { text-align: left; padding: 0.6rem 0.75rem 0.6rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  td b { font-weight: 650; }
+  td .q { color: var(--muted); }
+
+  .principles { list-style: none; padding: 0; margin: 0; }
+  .principles li { margin: 0 0 1.1rem; font-size: 0.95rem; }
+  .principles b { font-weight: 650; }
+
+  footer {
+    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+    font-size: 0.88rem; color: var(--muted);
+  }
+  @media (max-width: 34rem) {
+    .wrap { padding: 2.5rem 0 3.5rem; }
+    .proj h3 { font-size: 0.98rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Portfolio</p>
+  <h1>Caroline Ang</h1>
+  <p class="lede">Builder-educator working at the intersection of <strong>AI agents and human judgment</strong> — shipping practical, human-in-the-loop AI systems while teaching organizations and public-sector teams how to adopt them.</p>
+
+  <ul class="stats">
+    <li><b>7</b> hackathon builds</li>
+    <li><b>35</b> selected projects</li>
+    <li><b>6</b> industry themes</li>
+    <li><b>3</b> live products</li>
+  </ul>
+
+  <div class="note">
+    <em>On scope.</em> Client work is described but never named — identified only by sector and scale, with no repository link, live URL, or screenshot. Named projects on this page are my own products, open-source releases, or competition entries built under my own name. Most repositories are private; public ones are linked.
+  </div>
+
+  <section>
+    <h2>Flagship builds</h2>
+    <p class="section-label">Products &amp; competition entries</p>
+
+    <div class="proj">
+      <h3>C³ OS</h3>
+      <p>An AI decision cockpit that turns scattered context into structured decisions. Drop in messy project context, choose a cognitive lens, and receive a decision dashboard: recommended strategic move, scenario simulation paths, a confidence score, rationale with evidence trail, strategic risks, and a decide / delegate / delay / decline triage.</p>
+      <p class="meta"><b>Industry:</b> professional services, executive advisory · <b>Use case:</b> decision support, scenario planning</p>
+      <div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">LLM orchestration</span><span class="tag">decision intelligence</span></div>
+    </div>
+
+    <div class="proj">
+      <h3>FunnelOps Autopilot <span class="badge b-open">Open source</span></h3>
+      <p>An inbound sales agent for solo operators and boutique agencies drowning in messy leads. It classifies intent, urgency, budget signal, objections, and missing information; retrieves business memory ranked by importance, confidence, freshness, and relevance within a context budget; then drafts a reply and follow-up plan. Human approval is required before any consequential action, and every run is traceable.</p>
+      <p class="meta"><b>Industry:</b> SMB sales, agencies · <b>Use case:</b> lead qualification, agentic follow-up with HITL gates</p>
+      <div class="tags"><span class="tag">TypeScript</span><span class="tag">Node/Express</span><span class="tag">Qwen Cloud</span><span class="tag">agent memory</span><span class="tag">human-in-the-loop</span></div>
+      <p class="link">→ <a href="https://github.com/dcontessa/funnelops-autopilot">github.com/dcontessa/funnelops-autopilot</a></p>
+    </div>
+
+    <div class="proj">
+      <h3>GovernIQ <span class="badge b-live">Live</span></h3>
+      <p>Governance intelligence benchmarking 100 Malaysian public-listed companies against a validated seven-construct model — explaining <em>why</em> a company scores as it does, then producing an AI brief and board-ready memo. Evidence-first dashboard design: every score traces back to its source. Team build for DevLeague 2026, Lab 3 — Operational Sustainability &amp; ESG.</p>
+      <p class="meta"><b>Industry:</b> capital markets, corporate governance, ESG · <b>Use case:</b> benchmarking, board reporting</p>
+      <div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">governance analytics</span><span class="tag">AI briefing</span></div>
+      <p class="link">→ <a href="https://governiq.drcarolineang.com/">governiq.drcarolineang.com</a></p>
+    </div>
+
+    <div class="proj">
+      <h3>ScamSOS MY <span class="badge b-live">Live</span></h3>
+      <p>A 90-second emergency response agent for people who have just transferred money to a scammer or exposed banking credentials. Deliberately scoped as a <em>response orchestrator</em> — not a scam detector, not a bank, not a police-reporting channel — it converts panic into the correct emergency action sequence before more money moves. Built for BuildForMsia.</p>
+      <p class="meta"><b>Industry:</b> financial crime, consumer protection, civic tech · <b>Use case:</b> crisis response orchestration</p>
+      <div class="tags"><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Vite</span><span class="tag">Telegram bot</span><span class="tag">design system</span></div>
+      <p class="link">→ <a href="https://scamsos.malaysiacorp.com">scamsos.malaysiacorp.com</a></p>
+    </div>
+
+    <div class="proj">
+      <h3>ProofScope</h3>
+      <p><em>Know what was assured. And what was not.</em> A metric-level ESG assurance and restatement registry for Southeast Asian companies, turning a disclosure into a verifiable passport recording what was actually assured versus merely claimed. Solo submission, DevLeague 2026 Solana Lab.</p>
+      <p class="meta"><b>Industry:</b> ESG, audit and assurance · <b>Use case:</b> disclosure verification, restatement tracking</p>
+      <div class="tags"><span class="tag">TypeScript</span><span class="tag">verification registry</span><span class="tag">ESG data</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Hackathons &amp; competition builds</h2>
+    <p class="section-label">Where most of this portfolio started</p>
+    <p class="section-intro">Building against a clock forces the two things that matter most in agent design — brutal scope discipline, and a demo that has to actually run in front of judges. Several of these outlived the weekend and became live products.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Build</th><th>Competition</th><th>What it proved</th></tr></thead>
+        <tbody>
+          <tr><td><b>GovernIQ</b></td><td>DevLeague 2026 <span class="q">· Lab 3, ESG</span></td><td>Evidence-first scoring across 100 listed companies, traceable to source</td></tr>
+          <tr><td><b>ProofScope</b></td><td>DevLeague 2026 <span class="q">· Solana Lab, solo</span></td><td>Metric-level assurance — what was assured vs. merely claimed</td></tr>
+          <tr><td><b>ScamSOS MY</b></td><td>BuildForMsia</td><td>90-second crisis orchestration, now live with a Telegram bot</td></tr>
+          <tr><td><b>FunnelOps Autopilot</b></td><td>Qwen agent hackathon <span class="q">· Track 4</span></td><td>Persistent agent memory, retrieval within context budget, HITL gates</td></tr>
+          <tr><td><b>GrassrootsIQ</b></td><td>NVIDIA Inception Grand Challenge 2026</td><td>Signal → pattern → recommendation → next experiment loop</td></tr>
+          <tr><td><b>Clinician Copilot</b></td><td>Lovable Vibeathon KL 2026 <span class="q">· AWS Malaysia</span></td><td>Two front doors, one grounded knowledge engine — in a single day</td></tr>
+          <tr><td><b>TraceMint</b></td><td>Solana Devnet demonstration</td><td>Approval-to-payment with no raw evidence on-chain</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-intro"><b>The pattern across all seven:</b> each build names what it <em>refuses</em> to do before it names what it does. That constraint is what makes a weekend prototype defensible enough to keep running afterwards.</p>
+  </section>
+
+  <section>
+    <h2>AI readiness &amp; capability diagnostics</h2>
+    <p class="section-label">Assessment-led advisory tooling</p>
+    <p class="section-intro">The instrument layer beneath training and consulting engagements.</p>
+
+    <div class="proj">
+      <h3>AI Readiness Compass</h3>
+      <p>Dual-track AI readiness assessment for individuals <em>and</em> organisations, grounded in the C³ framework. Evaluates AI maturity, generates personalised insight, and returns an actionable development path rather than a bare score.</p>
+      <p class="meta"><b>Industry:</b> cross-sector, enterprise L&amp;D · <b>Use case:</b> maturity diagnostics, capability roadmapping</p>
+    </div>
+    <div class="proj">
+      <h3>AI Onboarding Accelerator</h3>
+      <p>Production-grade client onboarding assessment: secure Claude API integration, PDF document ingestion, persistent client database, and multi-consultant access control — built so a consulting team, not just one operator, can run it.</p>
+      <p class="meta"><b>Industry:</b> professional services · <b>Use case:</b> client intake, structured discovery</p>
+      <div class="tags"><span class="tag">Claude API</span><span class="tag">document processing</span><span class="tag">multi-tenant</span></div>
+    </div>
+    <div class="proj">
+      <h3>AI Business Navigator</h3>
+      <p>Business assessment and personal readiness diagnostics with AI-generated insight, dashboards, and exportable reports — helping founders and consultants turn fragmented business information into structured, assessment-led advice.</p>
+      <p class="meta"><b>Industry:</b> SMB advisory, consulting · <b>Use case:</b> diagnostic reporting</p>
+    </div>
+    <div class="proj">
+      <h3>Business Transformation Assessment · Global Export Readiness</h3>
+      <p>Two structured readiness instruments: one framing organisational change engagements, the other assessing a business's capacity to enter export markets.</p>
+      <p class="meta"><b>Industry:</b> enterprise, public sector, trade · <b>Use case:</b> change readiness, market-entry assessment</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Public sector, civic &amp; health AI</h2>
+    <p class="section-label">Government service delivery &amp; frontline health</p>
+    <p class="section-intro">Work aimed at citizen engagement and frontline care — much of it doubling as training material for public-sector cohorts.</p>
+
+    <div class="proj">
+      <h3>GovTransform Pro</h3>
+      <p>An agile government transformation and value-creation training platform for public-sector leaders. Eight self-paced milestones with progressive unlocking and "when ready" assessments instead of fixed deadlines — scheduling that bends around ministry workload. Includes AI coaching, cross-ministry collaboration, and a framework builder covering KPA, KRA, KPI, OKR, and Balanced Scorecard.</p>
+      <p class="meta"><b>Industry:</b> government, public administration · <b>Use case:</b> leadership capability building</p>
+      <div class="tags"><span class="tag">OpenAI</span><span class="tag">learning platform</span><span class="tag">strategy frameworks</span></div>
+    </div>
+    <div class="proj">
+      <h3>Citizen support workflow agent</h3>
+      <p>An agentic chatbot workflow for public service automation built on n8n: chat-based citizen engagement, automatic data logging, and appointment scheduling. Designed as a reusable pattern for counter automation, service portals, kiosk assistants, and community engagement.</p>
+      <p class="meta"><b>Industry:</b> government services · <b>Use case:</b> citizen intake, booking automation</p>
+      <div class="tags"><span class="tag">n8n</span><span class="tag">Google Workspace</span><span class="tag">agentic workflow</span></div>
+    </div>
+    <div class="proj">
+      <h3>Government service chatbot prototypes <span class="badge b-anon">Anonymised</span></h3>
+      <p>Conversational assistants prototyped for public service enquiry handling, exploring how citizens navigate government information without knowing which department owns their question.</p>
+      <p class="meta"><b>Industry:</b> government · <b>Use case:</b> enquiry deflection, service navigation</p>
+    </div>
+    <div class="proj">
+      <h3>Clinician Copilot</h3>
+      <p>Healthcare triage built in a one-day team hackathon: patients reach a WhatsApp intake bot while clinicians work a shared web dashboard — both powered by the same FAQ knowledge engine grounded in MedlinePlus, PubMed, RxNorm, and openFDA.</p>
+      <p class="meta"><b>Industry:</b> healthcare · <b>Use case:</b> patient triage, clinician decision support</p>
+      <div class="tags"><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">WhatsApp</span><span class="tag">RAG</span></div>
+    </div>
+    <div class="proj">
+      <h3>Zero-Cost AI Voicebot <span class="badge b-open">Open source</span></h3>
+      <p>A voice-enabled assistant built entirely on free-tier tooling, created as a teaching artifact for public-sector and education cohorts — proof that useful voice AI can be assembled with zero budget.</p>
+      <p class="meta"><b>Industry:</b> education, public sector training · <b>Use case:</b> training artifact, voice interface</p>
+      <p class="link">→ <a href="https://github.com/dcontessa/zero-cost-voicebot">github.com/dcontessa/zero-cost-voicebot</a></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Agentic systems &amp; revenue operations</h2>
+    <p class="section-label">Market sensing &amp; pipeline</p>
+    <p class="section-intro">Systems that watch a market, qualify demand, and move a pipeline — with a human in the loop at every consequential step.</p>
+
+    <div class="proj">
+      <h3>Competitive Intelligence Engine</h3>
+      <p>Real-time competitive surveillance across social media, product platforms, and news — watching for product launches, pricing changes, and messaging shifts, then surfacing what actually changed rather than a raw feed.</p>
+      <p class="meta"><b>Industry:</b> SaaS, consumer brands · <b>Use case:</b> market monitoring, positioning defence</p>
+    </div>
+    <div class="proj">
+      <h3>Authority Engine</h3>
+      <p>A content and positioning system for building professional authority — translating expertise into consistent, platform-appropriate publishing. Iterated across several build environments.</p>
+      <p class="meta"><b>Industry:</b> professional services, creator economy · <b>Use case:</b> thought-leadership operations</p>
+    </div>
+    <div class="proj">
+      <h3>GrassrootsIQ</h3>
+      <p>Omnichannel growth intelligence for grassroots operators: ingests creative assets across channels, scores their signals, surfaces patterns, and recommends the next controlled experiment. In development for the NVIDIA Inception Grand Challenge 2026; implementation detail reserved.</p>
+      <p class="meta"><b>Industry:</b> growth marketing · <b>Use case:</b> creative testing, experiment design</p>
+    </div>
+    <div class="proj">
+      <h3>EV commercial vehicle sales funnel</h3>
+      <p>End-to-end funnel for electric commercial vehicle sales: diagnostic assessment, financial projections, email and SMS automation, calendar booking, and an analytics dashboard, with real-time lead scoring.</p>
+      <p class="meta"><b>Industry:</b> automotive, fleet electrification · <b>Use case:</b> complex-consideration B2B sales</p>
+    </div>
+    <div class="proj">
+      <h3>SME exit readiness &amp; succession planning</h3>
+      <p>A prototype suite for business-owner succession: an exit-readiness scan and structured succession flows aimed at owner-operators approaching transition. Paired with LeadFlow, lead capture and routing tooling for small sales teams.</p>
+      <p class="meta"><b>Industry:</b> SME advisory, corporate finance · <b>Use case:</b> exit planning, succession diagnostics</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Trust, governance &amp; verification</h2>
+    <p class="section-label">What can be proven</p>
+    <p class="section-intro">Builds concerned with what can be proven rather than what is asserted.</p>
+
+    <div class="proj">
+      <h3>TraceMint</h3>
+      <p>An evidence-receipt and approval-to-payment demonstration for local sustainability actions on Solana Devnet. Deliberately conservative: no raw evidence stored on-chain, no token issued. A working demonstration of verifiable approval flows, not a currency experiment.</p>
+      <p class="meta"><b>Industry:</b> sustainability, public finance · <b>Use case:</b> verifiable claims, approval-to-disbursement</p>
+      <div class="tags"><span class="tag">Solana Devnet</span><span class="tag">TypeScript</span><span class="tag">wallet integration</span></div>
+    </div>
+    <div class="proj">
+      <h3>Blockchain standards institutional platform <span class="badge b-anon">Anonymised</span></h3>
+      <p>A multi-page institutional web platform covering policy, standards, programmes, membership, insights, and news for a global standards body advancing responsible blockchain adoption.</p>
+      <p class="meta"><b>Industry:</b> standards bodies, blockchain policy · <b>Use case:</b> institutional presence, membership</p>
+    </div>
+    <div class="proj">
+      <h3>C³ Transcribe</h3>
+      <p>Audio and video transcription built on Whisper, with history management and multi-format export — a working tool for professionals handling interview and session media at volume.</p>
+      <p class="meta"><b>Industry:</b> research, professional services · <b>Use case:</b> media transcription, research workflow</p>
+      <div class="tags"><span class="tag">OpenAI Whisper</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Decision dashboards &amp; operational intelligence</h2>
+    <p class="section-label">Client engagements · all anonymised</p>
+    <p class="section-intro">Delivered as decision surfaces for client organisations. <strong>No client names, repository links, live URLs, or screenshots appear here</strong> — these entries describe only the capability and the class of problem.</p>
+
+    <div class="proj">
+      <h3>Creative-industry talent intelligence <span class="badge b-anon">Anonymised</span></h3>
+      <p>Multi-tab analytical dashboard mapping creative-industry talent opportunity across a national market, with an AI strategic advisor grounded in a curated intelligence pack — so recommendations cite the underlying evidence rather than improvising.</p>
+      <p class="meta"><b>Industry:</b> creative industries, economic development · <b>Use case:</b> workforce strategy, policy analysis</p>
+    </div>
+    <div class="proj">
+      <h3>Proptech business-model dashboard <span class="badge b-anon">Anonymised</span></h3>
+      <p>Interactive dashboard visualising a property technology platform's business model, market position, technology architecture, competitive landscape, partnerships, and expansion potential across eight strategic vectors.</p>
+      <p class="meta"><b>Industry:</b> proptech · <b>Use case:</b> investor and board communication</p>
+    </div>
+    <div class="proj">
+      <h3>Financial workbenches platform</h3>
+      <p>Modular financial modelling delivered two ways — a multi-tenant SaaS platform and a companion mobile micro-SaaS. Covers DCF valuation, portfolio analytics, risk analysis, cash flow forecasting, and comparable company analysis, with template-driven three-statement and scenario modelling.</p>
+      <p class="meta"><b>Industry:</b> finance, corporate advisory · <b>Use case:</b> valuation, scenario modelling</p>
+    </div>
+    <div class="proj">
+      <h3>Financial operations workspace <span class="badge b-anon">Anonymised</span></h3>
+      <p>A redesigned finance workspace demonstrating invoice capture, AI-assisted review, controlled journal posting, live reporting, and audit evidence capture — with a guided demo journey through the full cycle.</p>
+      <p class="meta"><b>Industry:</b> finance operations, accounting · <b>Use case:</b> AP automation with audit trail</p>
+    </div>
+    <div class="proj">
+      <h3>Security operations dashboard <span class="badge b-anon">Anonymised</span></h3>
+      <p>Security operations surface spanning vulnerability assessment, transport security diagnostics, threat detection, and educational intelligence workflows.</p>
+      <p class="meta"><b>Industry:</b> cybersecurity · <b>Use case:</b> vulnerability triage, security training</p>
+    </div>
+    <div class="proj">
+      <h3>Awards judging &amp; scoring platform <span class="badge b-anon">Anonymised</span></h3>
+      <p>A judge portal and multi-stage scoring system for a regional technology awards programme: submission review, structured scoring across rounds, and judge workflow management.</p>
+      <p class="meta"><b>Industry:</b> events, awards programmes · <b>Use case:</b> structured evaluation at scale</p>
+    </div>
+    <div class="proj">
+      <h3>Operations command dashboard <span class="badge b-anon">Anonymised</span></h3>
+      <p>Operational reporting surface consolidating delivery and performance metrics for a services business.</p>
+      <p class="meta"><b>Industry:</b> professional services · <b>Use case:</b> operational oversight</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching artifacts &amp; rapid MVPs</h2>
+    <p class="section-label">Built to teach</p>
+    <p class="section-intro">Scoped tight, finished properly, and used to show a cohort how a working product actually gets shipped. Most were built as classroom material; the final entry was freelance client delivery and is anonymised accordingly.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Build</th><th>What it is</th><th>Teaching point</th></tr></thead>
+        <tbody>
+          <tr><td><b>EventPulse Tracker</b></td><td>Dashboard for AI exhibitions, film summits, and esports — filtering, detail views, live status, saved items</td><td>Data-driven UI, state management</td></tr>
+          <tr><td><b>GlowMatch</b></td><td>Beauty discovery MVP with personalised product matching and cart</td><td>Recommendation UX, commerce flows</td></tr>
+          <tr><td><b>Lumen Market</b></td><td>Mobile-first skincare shopping prototype</td><td>Mobile-first conversion design</td></tr>
+          <tr><td><b>Street Bite</b></td><td>Food truck ordering with live kitchen tracking and weather</td><td>Real-time order state, third-party APIs</td></tr>
+          <tr><td><b>Toy Collector</b></td><td>Premium collectible storefront with checkout preview</td><td>Premium visual design, checkout UX</td></tr>
+          <tr><td><b>Curriculum flipbooks</b> <span class="q">· anonymised</span></td><td>Graduate business coursework as browsable web-native material — freelance delivery for an education provider</td><td>Curriculum as product</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Additional work</h2>
+    <p class="section-label">Further builds &amp; prototypes</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Project</th><th>Industry</th><th>Use case</th></tr></thead>
+        <tbody>
+          <tr><td>Sports recovery education site <span class="q">· anonymised</span></td><td>Sports science, wellness</td><td>Non-diagnostic recovery guidance, consent-gated funnel</td></tr>
+          <tr><td>Sport Performance OS</td><td>Sports science</td><td>Athlete performance tracking</td></tr>
+          <tr><td>Weekly content planner <span class="q">· anonymised</span></td><td>Marketing, education</td><td>Multi-platform content generation</td></tr>
+          <tr><td>Training academy platform <span class="q">· anonymised</span></td><td>Education</td><td>Courses, trainer profiles, readiness surveys, admin</td></tr>
+          <tr><td>Corporate services sites <span class="q">· anonymised</span></td><td>Corporate services</td><td>Marketing site iterations</td></tr>
+          <tr><td>Wellness brand site <span class="q">· anonymised</span></td><td>Health and wellness</td><td>Brand and acquisition site</td></tr>
+          <tr><td>Infographic generator</td><td>Marketing</td><td>Automated visual asset production</td></tr>
+          <tr><td>SVG generator</td><td>Design tooling</td><td>Programmatic graphics with effect options</td></tr>
+          <tr><td>YouTube Insight Pro</td><td>Creator economy</td><td>Video performance analysis</td></tr>
+          <tr><td>Resume Rocket</td><td>Careers, HR</td><td>Résumé generation and optimisation</td></tr>
+          <tr><td>PhD thesis writer</td><td>Academia</td><td>Long-form research writing support</td></tr>
+          <tr><td>TherapyFlow · Wellnest</td><td>Mental health, wellness</td><td>Practice workflow and wellbeing prototypes</td></tr>
+          <tr><td>Capital Sense · Finance Explorers</td><td>Financial services, literacy</td><td>Funding access and learning prototypes</td></tr>
+          <tr><td>Smart Trading Solutions</td><td>Trading, fintech</td><td>Trading tooling prototype</td></tr>
+          <tr><td>Marketing SaaS</td><td>Marketing technology</td><td>Multi-tenant marketing platform</td></tr>
+          <tr><td>Data Harvest</td><td>Data operations</td><td>Collection and structuring pipeline</td></tr>
+          <tr><td>SoulSync · Soul Tarot</td><td>Consumer wellness</td><td>Consumer engagement prototypes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-intro">The public GitHub account also carries an active <strong>research trail</strong> of forked work across the agent ecosystem — orchestration frameworks, subagent libraries, MCP servers, voice AI, inference engines, and spec-driven development toolkits. These are study repositories, not authored work.</p>
+  </section>
+
+  <section>
+    <h2>What connects the work</h2>
+    <p class="section-label">Method</p>
+    <ul class="principles">
+      <li><b>Trustworthy agents.</b> Every agent build includes human approval gates, traceable runs, and graceful degradation — AI accountable enough to sit inside a real business decision.</li>
+      <li><b>Scope discipline.</b> The strongest builds are defined as much by what they refuse to do as what they do: a scam-response orchestrator that is explicitly not a detector; a sports recovery site that is deliberately non-diagnostic; an evidence registry that stores no raw evidence on-chain. Knowing where a system's authority ends is a design decision, not an omission.</li>
+      <li><b>Evidence over assertion.</b> A recurring pattern across governance, ESG, and advisory work — scores trace to sources, recommendations cite their grounding, and claims carry their provenance.</li>
+      <li><b>Ship under pressure.</b> Seven competition builds in roughly eighteen months. Hackathons are the fastest honest feedback loop available — a judge either understands the demo in ninety seconds or the idea needs rework, and no amount of documentation rescues a build that does not run.</li>
+      <li><b>Build and teach.</b> The same systems ship as products and get packaged as training for organizations, governments, and education cohorts. The teaching artifacts are not lesser work; they are the method made visible.</li>
+    </ul>
+  </section>
+
+  <footer>
+    Caroline Ang · builder &amp; educator · <a href="https://github.com/dcontessa">github.com/dcontessa</a>
+  </footer>
+
+</div>
+</body>
+</html>
