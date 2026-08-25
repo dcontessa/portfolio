@@ -2,7 +2,7 @@
 
 Builder-educator working at the intersection of **AI agents and human judgment** — shipping practical, human-in-the-loop AI systems while teaching organizations and public-sector teams how to adopt them.
 
-A serial hackathon builder: **seven competition entries** across DevLeague 2026, BuildForMsia, NVIDIA Inception, Lovable Vibeathon KL, and a Qwen agent hackathon — several of which became live products.
+A serial hackathon builder: **fourteen competition builds** across DevLeague 2026, BuildForMsia, NVIDIA Inception, Lovable Vibeathon KL, and a Qwen agent hackathon — several of which became live products.
 
 **Live page:** [`index.html`](index.html) · **GitHub:** [github.com/dcontessa](https://github.com/dcontessa)
 
@@ -10,7 +10,7 @@ A serial hackathon builder: **seven competition entries** across DevLeague 2026,
 
 ## A note on scope
 
-This portfolio summarizes roughly 35 selected builds drawn from an active repository set, organized by theme, industry, and use case.
+This portfolio summarizes roughly 42 selected builds drawn from an active repository set, organized by theme, industry, and use case.
 
 **Client work is described but never named.** Where a build was delivered for an organization, that organization is identified only by sector and scale — never by name — and no source, repository link, screenshot, or live URL is provided for it. Named projects on this page are my own products, open-source releases, or competition entries built under my own name.
 
@@ -63,8 +63,50 @@ Hackathons are where most of this portfolio's strongest work started. Building a
 | **GrassrootsIQ** | NVIDIA Inception Grand Challenge 2026 | Growth intelligence | Signal → pattern → recommendation → next experiment loop |
 | **Clinician Copilot** | Lovable Vibeathon KL 2026 *(AWS Malaysia)* | Healthcare · 1-day team build | Two front doors, one grounded knowledge engine |
 | **TraceMint** | Solana Devnet demonstration | Sustainability finance | Approval-to-payment with no raw evidence on-chain |
+| **Proofline** | DevLeague 2026 · Lab 1 | Financial reporting | Narrative claims checked against spreadsheet evidence in six hours |
+| **PayGuard** | DevLeague 2026 · community Lab | AI & agentic | Every figure recomputed and pinned to a verbatim quote before payment |
+| **AuditFlow** | DevLeague 2026 | Credit risk | Model extracts, arithmetic decides — no hallucinated figures |
+| **Impact Ledger** | DevLeague 2026 | Logistics & insurance | Tamper-evident custody with evidence kept off-chain |
+| **AgentPay** · **ChainDraw** · **OrgLens** | DevLeague 2026 | Agent infra · campaigns · HR | 402 payment gates, wallet-signed authority, time-aware org history |
 
 **The pattern across all seven:** each build names what it *refuses* to do before it names what it does. That constraint is what makes a weekend prototype defensible enough to keep running afterwards.
+
+---
+
+## Verifiable agents & agentic payments
+
+*DevLeague 2026 · shipped August 2026*
+
+The most current cluster, and the sharpest form of a thesis running through everything above: **an agent may extract, but it may not decide.** Each of these puts a deterministic gate between what a model produces and what actually happens — money moving, a loan approving, custody transferring.
+
+### PayGuard
+Verification-gated agentic payments on Solana. An agent reads an invoice (PDF or XLSX); a deterministic engine recomputes every figure in Python and pins each number to a verbatim source quote. Only a fully verified invoice gets paid — a failed check stops the payment rather than flagging it for later.
+**Industry:** fintech, accounts payable · **Use case:** autonomous payment behind a hard verification gate
+
+### AuditFlow
+*The model extracts. The arithmetic decides.* A credit analyst spends hours retyping numbers from PDF financial statements into a lending decision. Automate that with a language model alone and it hallucinates figures — and in credit risk, a made-up number is a bad loan. AuditFlow splits the work along that exact seam: extraction is a model problem, decision is an arithmetic problem.
+**Industry:** credit risk, lending · **Use case:** statement spreading without hallucinated figures
+
+### Proofline · public
+*Every financial claim needs a receipt.* A six-hour build comparing narrative claims in financial-report PDFs against the figures in accompanying spreadsheets, classifying each claim as Supported or Uncertain with explainable evidence retained. Built to the DevLeague Lab 1 brief. Its documentation states plainly that the prototype makes no production privacy or PDPA compliance claim and must never process confidential customer statements — the limit is written down, not left implied.
+**Industry:** financial reporting, assurance · **Use case:** claim-to-evidence verification
+→ [github.com/dcontessa/proofline](https://github.com/dcontessa/proofline)
+
+### Impact Ledger
+IoT-assisted, tamper-evident chain-of-custody for high-value goods in transit — art, calibrated instruments, fragile machinery, sensitive electronics, where handling evidence decides whether custody is accepted and claims are paid. Solana carries authorised shipment state transitions, custody checkpoints, and inspection evidence; operational metadata and bulky evidence stay off-chain. The next slice connects an ESP32-S3 and IMU to the shipment workflow.
+**Industry:** logistics, insurance, fine art · **Use case:** chain-of-custody, claims evidence
+
+### AgentPay
+An MVP of an AI agent purchasing three protected capabilities through an HTTP 402 payment gate — machine-to-machine commerce with an explicit paywall boundary rather than an open credential.
+**Industry:** agent infrastructure · **Use case:** metered agent access
+
+### ChainDraw
+A wallet-signed campaign flow — create, commit, draw, pay — where the organiser's wallet becomes their identity and every privileged action afterwards requires a signature from that same key.
+**Industry:** campaigns, prize draws · **Use case:** verifiable draw and payout
+
+### OrgLens
+Time-aware organisational history assembled from scattered HR records. Answers two questions that are painful to reconstruct by hand: how a role changed over several years — title changes, redesignations, reporting-line shifts, splits, merges — and what a person's journey has been since joining. The two histories are woven, so you can see exactly where a person's move meets the structural change happening around them.
+**Industry:** HR, workforce planning · **Use case:** org design, succession evidence
 
 ---
 
@@ -276,7 +318,7 @@ Additionally, the public GitHub account carries an active **research trail** of 
 - **Trustworthy agents.** Every agent build includes human approval gates, traceable runs, and graceful degradation — AI accountable enough to sit inside a real business decision.
 - **Scope discipline.** The strongest builds are defined as much by what they refuse to do as what they do: a scam-response orchestrator that is explicitly not a detector; a sports recovery site that is deliberately non-diagnostic; an evidence registry that stores no raw evidence on-chain. Knowing where a system's authority ends is a design decision, not an omission.
 - **Evidence over assertion.** Recurring pattern across governance, ESG, and advisory work — scores trace to sources, recommendations cite their grounding, and claims carry their provenance.
-- **Ship under pressure.** Seven competition builds in roughly eighteen months. Hackathons are the fastest honest feedback loop available — a judge either understands the demo in ninety seconds or the idea needs rework, and no amount of documentation rescues a build that does not run.
+- **Ship under pressure.** Fourteen competition builds in roughly eighteen months, seven of them in a single week. Hackathons are the fastest honest feedback loop available — a judge either understands the demo in ninety seconds or the idea needs rework, and no amount of documentation rescues a build that does not run.
 - **Build and teach.** The same systems ship as products and get packaged as training for organizations, governments, and education cohorts. The teaching artifacts are not lesser work; they are the method made visible.
 
 ---

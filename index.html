@@ -125,9 +125,9 @@
   <p class="lede">Builder-educator working at the intersection of <strong>AI agents and human judgment</strong> — shipping practical, human-in-the-loop AI systems while teaching organizations and public-sector teams how to adopt them.</p>
 
   <ul class="stats">
-    <li><b>7</b> hackathon builds</li>
-    <li><b>35</b> selected projects</li>
-    <li><b>6</b> industry themes</li>
+    <li><b>14</b> hackathon builds</li>
+    <li><b>42</b> selected projects</li>
+    <li><b>7</b> industry themes</li>
     <li><b>3</b> live products</li>
   </ul>
 
@@ -193,10 +193,54 @@
           <tr><td><b>GrassrootsIQ</b></td><td>NVIDIA Inception Grand Challenge 2026</td><td>Signal → pattern → recommendation → next experiment loop</td></tr>
           <tr><td><b>Clinician Copilot</b></td><td>Lovable Vibeathon KL 2026 <span class="q">· AWS Malaysia</span></td><td>Two front doors, one grounded knowledge engine — in a single day</td></tr>
           <tr><td><b>TraceMint</b></td><td>Solana Devnet demonstration</td><td>Approval-to-payment with no raw evidence on-chain</td></tr>
+          <tr><td><b>Proofline</b></td><td>DevLeague 2026 <span class="q">· Lab 1</span></td><td>Narrative claims checked against spreadsheet evidence in six hours</td></tr>
+          <tr><td><b>PayGuard</b></td><td>DevLeague 2026 <span class="q">· community Lab</span></td><td>Every figure recomputed and pinned to a verbatim quote before payment</td></tr>
+          <tr><td><b>AuditFlow</b></td><td>DevLeague 2026</td><td>Model extracts, arithmetic decides — no hallucinated figures</td></tr>
+          <tr><td><b>Impact Ledger</b></td><td>DevLeague 2026</td><td>Tamper-evident custody with evidence kept off-chain</td></tr>
+          <tr><td><b>AgentPay · ChainDraw · OrgLens</b></td><td>DevLeague 2026</td><td>402 payment gates, wallet-signed authority, time-aware org history</td></tr>
         </tbody>
       </table>
     </div>
     <p class="section-intro"><b>The pattern across all seven:</b> each build names what it <em>refuses</em> to do before it names what it does. That constraint is what makes a weekend prototype defensible enough to keep running afterwards.</p>
+  </section>
+
+  <section>
+    <h2>Verifiable agents &amp; agentic payments</h2>
+    <p class="section-label">DevLeague 2026 · shipped August 2026</p>
+    <p class="section-intro">The most current cluster, and the sharpest form of a thesis running through everything above: <strong>an agent may extract, but it may not decide.</strong> Each of these puts a deterministic gate between what a model produces and what actually happens — money moving, a loan approving, custody transferring.</p>
+
+    <div class="proj">
+      <h3>PayGuard</h3>
+      <p>Verification-gated agentic payments on Solana. An agent reads an invoice (PDF or XLSX); a deterministic engine recomputes every figure in Python and pins each number to a verbatim source quote. Only a fully verified invoice gets paid — a failed check stops the payment rather than flagging it for later.</p>
+      <p class="meta"><b>Industry:</b> fintech, accounts payable · <b>Use case:</b> autonomous payment behind a hard verification gate</p>
+      <div class="tags"><span class="tag">Solana</span><span class="tag">deterministic verification</span><span class="tag">document extraction</span></div>
+    </div>
+
+    <div class="proj">
+      <h3>AuditFlow</h3>
+      <p><em>The model extracts. The arithmetic decides.</em> A credit analyst spends hours retyping numbers from PDF financial statements into a lending decision. Automate that with a language model alone and it hallucinates figures — and in credit risk, a made-up number is a bad loan. AuditFlow splits the work along that exact seam: extraction is a model problem, decision is an arithmetic problem.</p>
+      <p class="meta"><b>Industry:</b> credit risk, lending · <b>Use case:</b> statement spreading without hallucinated figures</p>
+    </div>
+
+    <div class="proj">
+      <h3>Proofline <span class="badge b-open">Open source</span></h3>
+      <p><em>Every financial claim needs a receipt.</em> A six-hour build comparing narrative claims in financial-report PDFs against the figures in accompanying spreadsheets, classifying each claim as Supported or Uncertain with explainable evidence retained. Built to the DevLeague Lab 1 brief. Its documentation states plainly that the prototype makes no production privacy or PDPA compliance claim and must never process confidential customer statements — the limit is written down, not left implied.</p>
+      <p class="meta"><b>Industry:</b> financial reporting, assurance · <b>Use case:</b> claim-to-evidence verification</p>
+      <p class="link">→ <a href="https://github.com/dcontessa/proofline">github.com/dcontessa/proofline</a></p>
+    </div>
+
+    <div class="proj">
+      <h3>Impact Ledger</h3>
+      <p>IoT-assisted, tamper-evident chain-of-custody for high-value goods in transit — art, calibrated instruments, fragile machinery, sensitive electronics, where handling evidence decides whether custody is accepted and claims are paid. Solana carries authorised shipment state transitions, custody checkpoints, and inspection evidence; operational metadata and bulky evidence stay off-chain. The next slice connects an ESP32-S3 and IMU to the shipment workflow.</p>
+      <p class="meta"><b>Industry:</b> logistics, insurance, fine art · <b>Use case:</b> chain-of-custody, claims evidence</p>
+      <div class="tags"><span class="tag">Solana</span><span class="tag">ESP32-S3</span><span class="tag">IoT telemetry</span></div>
+    </div>
+
+    <div class="proj">
+      <h3>AgentPay · ChainDraw · OrgLens</h3>
+      <p><b>AgentPay</b> — an AI agent purchasing three protected capabilities through an HTTP 402 payment gate: machine-to-machine commerce with an explicit paywall boundary rather than an open credential. <b>ChainDraw</b> — a wallet-signed campaign flow where the organiser's wallet becomes their identity and every privileged action requires a signature from that same key. <b>OrgLens</b> — time-aware organisational history from scattered HR records, weaving how a role changed with what a person's journey has been, so you can see where the two intersect.</p>
+      <p class="meta"><b>Industry:</b> agent infrastructure, campaigns, HR · <b>Use case:</b> metered agent access, verifiable payout, org design</p>
+    </div>
   </section>
 
   <section>
@@ -416,8 +460,8 @@
     <ul class="principles">
       <li><b>Trustworthy agents.</b> Every agent build includes human approval gates, traceable runs, and graceful degradation — AI accountable enough to sit inside a real business decision.</li>
       <li><b>Scope discipline.</b> The strongest builds are defined as much by what they refuse to do as what they do: a scam-response orchestrator that is explicitly not a detector; a sports recovery site that is deliberately non-diagnostic; an evidence registry that stores no raw evidence on-chain. Knowing where a system's authority ends is a design decision, not an omission.</li>
-      <li><b>Evidence over assertion.</b> A recurring pattern across governance, ESG, and advisory work — scores trace to sources, recommendations cite their grounding, and claims carry their provenance.</li>
-      <li><b>Ship under pressure.</b> Seven competition builds in roughly eighteen months. Hackathons are the fastest honest feedback loop available — a judge either understands the demo in ninety seconds or the idea needs rework, and no amount of documentation rescues a build that does not run.</li>
+      <li><b>Evidence over assertion.</b> The through-line of the whole portfolio: an agent may extract, but it may not decide. Scores trace to sources, recommendations cite their grounding, figures are recomputed rather than trusted, and claims carry their provenance. AuditFlow states it in five words — <em>the model extracts, the arithmetic decides</em>.</li>
+      <li><b>Ship under pressure.</b> Fourteen competition builds in roughly eighteen months, seven of them in a single week. Hackathons are the fastest honest feedback loop available — a judge either understands the demo in ninety seconds or the idea needs rework, and no amount of documentation rescues a build that does not run.</li>
       <li><b>Build and teach.</b> The same systems ship as products and get packaged as training for organizations, governments, and education cohorts. The teaching artifacts are not lesser work; they are the method made visible.</li>
     </ul>
   </section>
