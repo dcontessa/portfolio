@@ -16,7 +16,7 @@ async function connect(writes: boolean) {
 const ro = await connect(false);
 const names = (await ro.listTools()).tools.map(t => t.name);
 for (const n of ["dv360_list_partners", "dv360_list_advertisers", "dv360_list_line_items", "dv360_get_line_item", "dv360_list_campaigns",
-  "dv360_list_insertion_orders", "dv360_list_creatives", "dv360_create_report_query", "dv360_fetch_report"]) {
+  "dv360_list_insertion_orders", "dv360_list_creatives", "dv360_create_report_query", "dv360_fetch_report", "dv360_weekly_performance_brief"]) {
   assert.ok(names.includes(n), `missing tool ${n}`);
 }
 assert.ok(!names.some(n => n.includes("_set_")), "write tools must be hidden by default");

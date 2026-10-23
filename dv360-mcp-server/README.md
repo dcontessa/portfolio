@@ -8,6 +8,7 @@ MCP server for [Google Display & Video 360](https://marketingplatform.google.com
 |---|---|
 | Read | `dv360_list_partners`, `dv360_list_advertisers`, `dv360_get_advertiser`, `dv360_list_/get_campaign(s)`, `dv360_list_/get_insertion_order(s)`, `dv360_list_/get_line_item(s)`, `dv360_list_/get_creative(s)`, `dv360_list_line_item_targeting` |
 | Reporting | `dv360_list_queries`, `dv360_create_report_query`, `dv360_run_report_query`, `dv360_list_reports`, `dv360_fetch_report` |
+| Workflow | `dv360_weekly_performance_brief` (week-on-week totals, CTR/CPM/CPC and top/bottom line items in one call), plus the `dv360_weekly_brief` prompt that turns it into a stakeholder write-up |
 | Write (opt-in) | `dv360_set_campaign_status`, `dv360_set_insertion_order_status`, `dv360_set_line_item_status` |
 
 Write tools change live delivery and spend, so they are **not registered** unless `DV360_ENABLE_WRITES=true`.
@@ -25,6 +26,13 @@ Uses Google Application Default Credentials, with the DV360 and Bid Manager scop
      `gcloud auth application-default login --client-id-file=client.json --scopes=https://www.googleapis.com/auth/display-video,https://www.googleapis.com/auth/doubleclickbidmanager,https://www.googleapis.com/auth/cloud-platform`
 
 Access is limited to whatever the identity can see in DV360.
+
+## Client accounts
+
+- Run **one instance per client**, each with its own credentials (a service account added only to that client's DV360 seat).
+- Set `DV360_ALLOWED_ADVERTISER_IDS="111,222"` to make every advertiser-scoped tool refuse any other advertiser.
+- The weekly brief creates temporary Bid Manager queries titled `[MCP brief] ...` and deletes them afterwards.
+- HTTP mode has no authentication of its own; keep it on localhost.
 
 ## Run
 

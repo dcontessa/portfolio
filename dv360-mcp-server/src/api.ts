@@ -8,7 +8,7 @@ const auth = new GoogleAuth({ scopes });
 export type Json = Record<string, unknown>;
 
 interface RequestOptions {
-  method?: "GET" | "POST" | "PATCH";
+  method?: "GET" | "POST" | "PATCH" | "DELETE";
   params?: Record<string, string | number | boolean | undefined>;
   body?: unknown;
 }
@@ -78,5 +78,15 @@ export async function apiRequest<T = Json>(
     }
     throw new ApiError(response.status, detail);
   }
-  return (await response.json()) as T;
+  const text = await response.text();
+  return (text ? JSON.parse(text) : {}) as T;
+}
+
+// Optional guard for client work: DV360_ALLOWED_ADVERTISER_IDS="111,222" limits every advertiser-scoped tool to those IDs
+const allowed = process.env.DV360_ALLOWED_ADVERTISER_IDS?.split(",").map(s => s.trim()).filter(Boolean);
+
+export function assertAdvertiserAllowed(advertiserId: string | undefined): void {
+  if (allowed && advertiserId && !allowed.includes(advertiserId)) {
+    throw new Error(`Advertiser ${advertiserId} is not in this server's DV360_ALLOWED_ADVERTISER_IDS allowlist. Ask the owner to add it, or use the instance configured for that client.`);
+  }
 }

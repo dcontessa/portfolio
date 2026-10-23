@@ -9,6 +9,7 @@ import { toNodeHandler } from "@modelcontextprotocol/node";
 import { createMcpHandler, McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
 import { registerDv360ReadTools, registerDv360WriteTools } from "./tools/dv360.js";
+import { registerBriefTools } from "./tools/brief.js";
 import { registerReportingTools } from "./tools/reporting.js";
 
 const WRITES_ENABLED = process.env.DV360_ENABLE_WRITES === "true";
@@ -17,6 +18,7 @@ function createServer(): McpServer {
   const server = new McpServer({ name: "dv360-mcp-server", version: "1.0.0" });
   registerDv360ReadTools(server);
   registerReportingTools(server);
+  registerBriefTools(server);
   if (WRITES_ENABLED) registerDv360WriteTools(server);
   return server;
 }

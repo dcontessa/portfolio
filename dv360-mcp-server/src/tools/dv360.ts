@@ -1,6 +1,6 @@
 import type { McpServer } from "@modelcontextprotocol/server";
 import * as z from "zod/v4";
-import { apiRequest, type Json } from "../api.js";
+import { apiRequest, assertAdvertiserAllowed, type Json } from "../api.js";
 import { DV360_BASE_URL } from "../constants.js";
 import { jsonResult } from "../format.js";
 
@@ -74,6 +74,7 @@ function registerResourceTools(server: McpServer, r: Resource): void {
     },
     async (args, ctx) => {
       const a = args as Record<string, string | number | undefined>;
+      assertAdvertiserAllowed(a.advertiser_id as string | undefined);
       const fields = a.fields === "*" ? undefined : a.fields ?? `${plural}(${r.summaryFields}),nextPageToken`;
       const data = await apiRequest(DV360_BASE_URL, listPath(r, a.advertiser_id as string | undefined), ctx.mcpReq.signal, {
         params: { pageSize: a.page_size, pageToken: a.page_token, filter: a.filter, orderBy: a.order_by, fields }
@@ -97,6 +98,7 @@ function registerResourceTools(server: McpServer, r: Resource): void {
     },
     async (args, ctx) => {
       const a = args as Record<string, string>;
+      assertAdvertiserAllowed(a.advertiser_id);
       const data = await apiRequest(DV360_BASE_URL, `${listPath(r, a.advertiser_id)}/${a[r.idParam]}`, ctx.mcpReq.signal);
       return jsonResult(data);
     }
@@ -140,7 +142,10 @@ export function registerDv360ReadTools(server: McpServer): void {
       inputSchema: z.strictObject({ advertiser_id: ID("Advertiser") }),
       annotations: READ_ONLY
     },
-    async ({ advertiser_id }, ctx) => jsonResult(await apiRequest(DV360_BASE_URL, `advertisers/${advertiser_id}`, ctx.mcpReq.signal))
+    async ({ advertiser_id }, ctx) => {
+      assertAdvertiserAllowed(advertiser_id);
+      return jsonResult(await apiRequest(DV360_BASE_URL, `advertisers/${advertiser_id}`, ctx.mcpReq.signal));
+    }
   );
 
   server.registerTool(
@@ -157,13 +162,15 @@ export function registerDv360ReadTools(server: McpServer): void {
       }),
       annotations: READ_ONLY
     },
-    async ({ advertiser_id, line_item_id, targeting_type, page_size, page_token }, ctx) =>
-      jsonResult(await apiRequest(
+    async ({ advertiser_id, line_item_id, targeting_type, page_size, page_token }, ctx) => {
+      assertAdvertiserAllowed(advertiser_id);
+      return jsonResult(await apiRequest(
         DV360_BASE_URL,
         `advertisers/${advertiser_id}/lineItems/${line_item_id}/targetingTypes/${targeting_type}/assignedTargetingOptions`,
         ctx.mcpReq.signal,
         { params: { pageSize: page_size, pageToken: page_token } }
-      ))
+      ));
+    }
   );
 }
 
@@ -191,6 +198,7 @@ export function registerDv360WriteTools(server: McpServer): void {
       },
       async (args, ctx) => {
         const a = args as Record<string, string>;
+      assertAdvertiserAllowed(a.advertiser_id);
         const data = await apiRequest(DV360_BASE_URL, `${listPath(r, a.advertiser_id)}/${a[r.idParam]}`, ctx.mcpReq.signal, {
           method: "PATCH",
           params: { updateMask: "entityStatus", fields: `${r.idParam.replace(/_([a-z])/g, (_, c: string) => c.toUpperCase())},displayName,entityStatus` },
